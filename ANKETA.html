@@ -11,20 +11,52 @@
     <script>
           "use strict";
 
-        do { 
-          let surname = prompt( "Введите вашу фамилию...", 'Пупкин' );
-        } while ( surname == '' ||
-                  surname == null ||
-                  typeof surname == 'number' )
-                    
+          var RegExp = /[^a-zA-Zа-яА-Я]+/gmi;
+        
+          function checkValidate( input ) {
+              if( input == '' ) return true;
+              if( input !== null ) {
+                  var matchRegExp = input.match( RegExp );
+                  if( matchRegExp ) return true;
+              }else return false;
+          }
+         
+         do {
+            var surname = prompt( "Введите вашу фамилию...", '' );           
+        } while ( checkValidate( surname ) );
 
-          let name = prompt( "Введите вашe имя...", 'Петр' );
-          let secondName = prompt( "Введите ваше отчество...", 'Иванович' );
-          let age = prompt( "Введите ваш возраст ( лет )...", '65' );
-          let sex = confirm( "Ваш пол мужской?" );
-// фамилия имя не пустые, возраст корректный и нормальное размера
+        do {
+            var name = prompt( "Введите вашe имя...", '' );
+        } while ( checkValidate( name ) );
+
+        
+        do {
+            var secondName = prompt( "Введите ваше отчество...", '' );
+        } while ( checkValidate( secondName ) );
+
+        RegExp = /[^\d]+/gmi;
+        while( !(age >= 14 && age <= 90) ) {
+            do {
+                var age = prompt( "Введите ваш возраст ( лет )...", '' );
+            } while ( checkValidate( age ) );
+                };
+            
+                
+        let sex = confirm( "Ваш пол мужской?" );
+        
+        console.log("age  = " + age);
+        console.log("surname  =  " + surname);
+        console.log("name  = " + name);
+        console.log("sex  = " + sex);
+        console.log("secondName  = " + secondName);
+
+
+
+
+
+            
           
-
+            
           let sexLetter, retire, retireAge, p = ' ';
           let ageDay = +age * 365;
           let FIO = surname +p+ name +p+ secondName;
@@ -32,8 +64,8 @@
           // пенсионный возраст: мужчины 65, женщины 60 лет
         sex ? (retire = 65, sexLetter = 'мужской' ): ( retire = 60, sexLetter = 'женский') ;
         ( age >= retire ) ? retireAge = 'да' : retireAge = 'нет';
-                
         alert ('ФИО: '+FIO+'\nВозраст, лет: '+age+'\nВозраст, дней: '+ageDay+'\nПол: '+sexLetter+'\nПенсионный возраст: '+ retireAge);
+               
 
           
 
