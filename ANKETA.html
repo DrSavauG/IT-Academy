@@ -1,76 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>ANKETA</title>
 </head>
+
 <body>
-    
+
     <script>
-          "use strict";
+        "use strict";
 
-          var RegExp = /[^a-zA-Zа-яА-Я]+/gmi;
-        
-          function checkValidate( input ) {
-              if( input == '' ) return true;
-              if( input !== null ) {
-                  var matchRegExp = input.match( RegExp );
-                  if( matchRegExp ) return true;
-              }else return false;
-          }
-         
-         do {
-            var surname = prompt( "Введите вашу фамилию...", '' );           
-        } while ( checkValidate( surname ) );
+        var RegExp = /[^a-zA-Zа-яА-Я]+/gmi;
+
+        function checkValidate(input) {
+            if (input == '') return true;
+            if (input !== null) {
+                var matchRegExp = input.match(RegExp);
+                if (matchRegExp) return true;
+            } else return false;
+        }
 
         do {
-            var name = prompt( "Введите вашe имя...", '' );
-        } while ( checkValidate( name ) );
+            var surname = prompt("Введите вашу фамилию...", '');
+        } while (checkValidate(surname));
 
-        
         do {
-            var secondName = prompt( "Введите ваше отчество...", '' );
-        } while ( checkValidate( secondName ) );
+            var name = prompt("Введите вашe имя...", '');
+        } while (checkValidate(name));
+
+
+        do {
+            var secondName = prompt("Введите ваше отчество...", '');
+        } while (checkValidate(secondName));
 
         RegExp = /[^\d]+/gmi;
-        while( !(age >= 14 && age <= 90) ) {
+        while (!(age >= 14 && age <= 90)) {
             do {
-                var age = prompt( "Введите ваш возраст ( лет )...", '' );
-            } while ( checkValidate( age ) );
-                };
-            
-                
-        let sex = confirm( "Ваш пол мужской?" );
-        
-        console.log("age  = " + age);
-        console.log("surname  =  " + surname);
-        console.log("name  = " + name);
-        console.log("sex  = " + sex);
-        console.log("secondName  = " + secondName);
+                var age = prompt("Введите ваш возраст ( лет )...", '');
+            } while (checkValidate(age));
+        };
 
+        let sex = confirm("Ваш пол мужской?");
+        let sexLetter, retire, retireAge, p = ' ';
+        let ageDay = +age * 365;
+        let FIO = surname + p + name + p + secondName;
 
-
-
-
-            
-          
-            
-          let sexLetter, retire, retireAge, p = ' ';
-          let ageDay = +age * 365;
-          let FIO = surname +p+ name +p+ secondName;
-
-          // пенсионный возраст: мужчины 65, женщины 60 лет
-        sex ? (retire = 65, sexLetter = 'мужской' ): ( retire = 60, sexLetter = 'женский') ;
-        ( age >= retire ) ? retireAge = 'да' : retireAge = 'нет';
-        alert ('ФИО: '+FIO+'\nВозраст, лет: '+age+'\nВозраст, дней: '+ageDay+'\nПол: '+sexLetter+'\nПенсионный возраст: '+ retireAge);
-               
-
-          
-
-          
-        
+        // пенсионный возраст: мужчины 65, женщины 60 лет в РБ, если доживут;
+        sex ? (retire = 65, sexLetter = 'мужской') : (retire = 60, sexLetter = 'женский');
+        (age >= retire) ? retireAge = 'да' : retireAge = 'нет';
+        alert('ФИО: ' + FIO + '\nВозраст, лет: ' + age + '\nВозраст, дней: ' + ageDay + '\nПол: ' + sexLetter + '\nПенсионный возраст: ' + retireAge);    
     </script>
 </body>
+
 </html>
