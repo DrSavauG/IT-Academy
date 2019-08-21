@@ -48,7 +48,7 @@
         let ageDay = +age * 365;
         let FIO = surname + p + name + p + secondName;
 
-        // пенсионный возраст: мужчины 65, женщины 60 лет в РБ, если доживут;
+        // пенсионный возраст:  женщины 60 лет в РБ, мужчины 65, если доживут;
         sex ? (retire = 65, sexLetter = 'мужской') : (retire = 60, sexLetter = 'женский');
         (age >= retire) ? retireAge = 'да' : retireAge = 'нет';
         alert('ФИО: ' + FIO + '\nВозраст, лет: ' + age + '\nВозраст, дней: ' + ageDay + '\nПол: ' + sexLetter + '\nПенсионный возраст: ' + retireAge);    
