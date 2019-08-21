@@ -4,14 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Anketa</title>
+    <title>ANKETA</title>
 </head>
 <body>
     
     <script>
           "use strict";
-    
+
+        do { 
           let surname = prompt( "Введите вашу фамилию...", 'Пупкин' );
+        } while ( surname == '' ||
+                  surname == null ||
+                  typeof surname == 'number' )
+                    
+
           let name = prompt( "Введите вашe имя...", 'Петр' );
           let secondName = prompt( "Введите ваше отчество...", 'Иванович' );
           let age = prompt( "Введите ваш возраст ( лет )...", '65' );
