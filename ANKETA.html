@@ -51,7 +51,7 @@
         // пенсионный возраст:  женщины 60 лет в РБ, мужчины 65, если доживут;
         sex ? (retire = 65, sexLetter = 'мужской') : (retire = 60, sexLetter = 'женский');
         (age >= retire) ? retireAge = 'да' : retireAge = 'нет';
-        alert('ФИО: ' + FIO + '\nВозраст, лет: ' + age + '\nВозраст, дней: ' + ageDay + '\nПол: ' + sexLetter + '\nПенсионный возраст: ' + retireAge);    
+        alert(`ФИО: ${FIO} \nВозраст, лет: ${age} \nВозраст, дней: ${ageDay} \nПол: ${sexLetter} \nПенсионный возраст: ${retireAge}`);     
     </script>
 </body>
 
