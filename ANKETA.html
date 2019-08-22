@@ -13,15 +13,17 @@
     <script>
         "use strict";
 
-        var Regular = /[^a-zA-Zа-яА-Я]+/gmi;
+        var regular = /[^a-zA-Zа-яА-Я]+/gmi;
 
         function checkValidate(input) {
             if (input == '') return true;
             if (input !== null) {
-                var matchRegular = input.match(Regular);
-                if ( matchRegular ) return true;
+                var matchRegular = input.match(regular);
+                if (matchRegular) return true;
             } else return true;
         }
+
+      
 
         do {
             var surname = prompt("Введите вашу фамилию...", '');
@@ -36,23 +38,29 @@
             var secondName = prompt("Введите ваше отчество...", '');
         } while (checkValidate(secondName));
 
-        Regular = /[^\d]+/gmi;
+        // regular = /[^\d]+/gmi;
+        // do {
+        //     do {
+        //         var age = prompt("Введите ваш возраст ( лет )...", '');
+        // age = parseInt(age);
+        //     } while (checkValidate(age));
+        // } while (!(age >= 14 && age <= 90));
+
+        
         do {
-            do {
-                var age = prompt("Введите ваш возраст ( лет )...", '');
-            } while (checkValidate(age));
-        } while (!(age >= 14 && age <= 90));
+            var age = prompt("Введите ваш возраст ( лет )...", '');
+            age = parseInt(age);
+        } while (isNaN(age) || age <= 0);
 
         let sex = confirm("Ваш пол мужской?");
         let sexLetter, retire, retireAge, p = ' ';
-        let ageDay = +age * 365;
+        let ageDay = age * 365;
         let FIO = surname + p + name + p + secondName;
         let agePlus = 5;
 
-        // пенсионный возраст:  женщины 60 лет в РБ, мужчины 65, если доживут;
         sex ? (retire = 65, sexLetter = 'мужской') : (retire = 60, sexLetter = 'женский');
         (age >= retire) ? retireAge = 'да' : retireAge = 'нет';
-        alert(`ФИО: ${FIO} \nВозраст, лет: ${age} \nВозраст, дней: ${ageDay} \nЧерез 5 лет вам будет: ${(+age) + (+agePlus)}\nПол: ${sexLetter} \nПенсионный возраст: ${retireAge}`);     
+        alert(`ФИО: ${FIO} \nВозраст, лет: ${age} \nВозраст, дней: ${ageDay} \nЧерез 5 лет вам будет: ${(age) + (agePlus)}\nПол: ${sexLetter} \nПенсионный возраст: ${retireAge}`);     
     </script>
 </body>
 
