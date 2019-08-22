@@ -16,13 +16,15 @@
         var regular = /[^a-zA-Zа-яА-Я]+/gmi;
 
         function checkValidate(input) {
-            if (input == '') return true;
-            if (input !== null) {
-                var matchRegular = input.match(regular);
-                if (matchRegular) return true;
-            } else return true;
+        return input == '' || input === null || input.match(regular)
+            // if (input == '') return true;
+            // if (input !== null) {
+            //     var matchRegular = input.match(regular);
+            //     if (matchRegular) return true;
+            // } else return true;
         }
-
+// 
+// 
         do {
             var surname = prompt("Введите вашу фамилию...", '');
         } while (checkValidate(surname));
