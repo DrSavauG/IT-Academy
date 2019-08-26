@@ -1,17 +1,17 @@
 function deleteFirstLastGap(string) {
     var from = 0;
     var to = string.length - 1;
-    if (string.charAt(from) != ' ' && string.charAt(to) != ' ') {
+
+    for (from; string.charAt(from) == ' '; from++);
+    if (from == string.length) {
+        return '';
+    }
+    for (to; string.charAt(to) == ' '; to--);
+    if (from == 0 && to == string.length - 1) {
         return string;
     } else {
-        for (from; string.charAt(from) == ' '; from++);
-        if (from == string.length) {
-            return ''; // или undefined?
-        } else {
-            for (to; string.charAt(to) == ' '; to--);
-            string = string.substring(from, to + 1);//.substr некорректно убирал справа
-            return string;
-        }
+        string = string.substring(from, to + 1);
+        return string;
     }
 }
 let input = prompt(`Введите строку... `, '');
