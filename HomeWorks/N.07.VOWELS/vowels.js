@@ -1,7 +1,6 @@
 "use strict";
 function vowels(input) {
-    const stringLowerSplit = input.toLowerCase().split('');;
-    return stringLowerSplit.filter(element =>
+    return input.toLowerCase().split('').filter(element =>
         element == 'а' ||
         element == 'о' ||
         element == 'и' ||
@@ -11,9 +10,7 @@ function vowels(input) {
         element == 'ы' ||
         element == 'у' ||
         element == 'ю' ||
-        element == 'я').length
+        element == 'я').length;
 }
 let userString = prompt(`Введите строку...`, 'аоиеёэыуюяАОИЕЁЭЫУЮЯ');
 console.log(vowels(userString));
-
-
