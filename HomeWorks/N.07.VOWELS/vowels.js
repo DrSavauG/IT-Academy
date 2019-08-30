@@ -1,16 +1,8 @@
 "use strict";
 function vowels(input) {
-    return input.toLowerCase().split('').filter(element =>
-        element == 'а' ||
-        element == 'о' ||
-        element == 'и' ||
-        element == 'е' ||
-        element == 'ё' ||
-        element == 'э' ||
-        element == 'ы' ||
-        element == 'у' ||
-        element == 'ю' ||
-        element == 'я').length;
-}
+    let vowelsArr = ['а', 'о', 'и', 'е', 'ё', 'э', 'ы', 'у', 'ю', 'я'];
+    return input.toLowerCase().split('').filter(element => {
+        return vowelsArr.indexOf(element) !== -1;}).length;
+    }
 let userString = prompt(`Введите строку...`, 'аоиеёэыуюяАОИЕЁЭЫУЮЯ');
-console.log(vowels(userString));
+    console.log(vowels(userString));

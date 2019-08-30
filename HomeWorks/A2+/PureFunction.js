@@ -2,11 +2,11 @@ function deleteFirstLastGap(string) {
     var from = 0;
     var to = string.length - 1;
 
-    for (from; string.charAt(from) == ' '; from++);
+    for (; string.charAt(from) == ' '; from++);
     if (from == string.length) {
         return '';
     }
-    for (to; string.charAt(to) == ' '; to--);
+    for (; string.charAt(to) == ' '; to--);
     if (from == 0 && to == string.length - 1) {
         return string;
     } else {
