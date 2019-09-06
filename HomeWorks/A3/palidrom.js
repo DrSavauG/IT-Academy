@@ -14,6 +14,6 @@ function isPalindromFor(input) {// через for
         }
     } return true
 }
-let phrase = prompt(`Введите фразу...`, '');
+let phrase = prompt(`Введите фразу...`, 'А за работу дадут? – Оба раза!');
 console.log(isPalindrom(phrase));
 console.log(isPalindromFor(phrase));
