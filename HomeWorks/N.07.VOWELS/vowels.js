@@ -21,7 +21,7 @@ function vowelsReduce(input) {
         if (vowelsArr.indexOf(element) !== -1) {
             return sum + 1;
         } else {
-            return sum + 0;
+            return sum;
         }
     }, 0);
 }
