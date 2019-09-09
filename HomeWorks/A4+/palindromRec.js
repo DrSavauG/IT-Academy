@@ -1,22 +1,12 @@
-// A4+
-// Написать чистую функцию, проверяющую, что переданная ей фраза является палиндромом, с использованием рекурсии.
-// Массивы при решении не использовать.
-// При проверке должны игнорироваться:
-//  - регистр букв;
-//  - пробелы;
-//  - знаки препинания;
-//  - мягкие и твёрдые знаки;
-//  - разница между буквами "е" и "ё".
+'use strict';
 
- 'use strict';
-
-function isPalindromFor(input) {
-    let fixPhrase = input.replace(/[ёЁ]/g, 'е').toLowerCase().replace(/[^а-щыэ-я]/g, '')
-    for (let index = 0; index < Math.floor(fixPhrase.length / 2); index++) {
-        if (fixPhrase[index] !== fixPhrase[fixPhrase.length - index - 1]) {
-            return false
-        }
-    } return true
+function isPalindromRec(input) {
+    if (input.length < 2) return true;
+    let fixPhrase = input.replace(/[ёЁ]/g, 'е').toLowerCase().replace(/[^а-щыэ-я]/g, '');
+    if (fixPhrase[0] === fixPhrase[fixPhrase.length - 1]) {
+        return isPalindromRec(fixPhrase.slice(1, - 1));
+    }return false;
 }
+
 let phrase = prompt(`Введите фразу...`, 'А за работу дадут? – Оба раза!');
-console.log(isPalindromFor(phrase));
+console.log(isPalindromRec(phrase));
