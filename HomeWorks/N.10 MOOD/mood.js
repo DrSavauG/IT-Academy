@@ -26,4 +26,4 @@ function mood(colorsCount) {
     }
 }
 
-mood(3);
+mood(7);
