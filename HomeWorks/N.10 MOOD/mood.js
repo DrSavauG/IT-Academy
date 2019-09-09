@@ -7,11 +7,22 @@ function randomDiap(n, m) {
 function mood(colorsCount) {
     var colors = ['', 'красный', 'оранжевый', 'жёлтый', 'зелёный', 'голубой', 'синий', 'фиолетовый'];
 
+    if (colorsCount > colors.length - 1) {
+        colorsCount = colors.length - 1;
+        console.log(`Цветов не может быть больше ${colors.length - 1}`);
+    }
     console.log('цветов: ' + colorsCount);
-    for (var i = 1; i <= colorsCount; i++) {
-        var n = randomDiap(1, 7);
+    let usedColors = {};
+    for (let i = 1; i <= colorsCount;) {
+        var n = randomDiap(1, colors.length - 1);
         var colorName = colors[n];
-        console.log(colorName);
+        if (colorName in usedColors) {
+            continue;
+        } else {
+            usedColors[colorName] = colorName;
+            console.log(colorName);
+            i++;
+        }
     }
 }
 
