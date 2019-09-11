@@ -10,19 +10,9 @@ function calculate(params) {
         if (arr.includes("(")) {
             let start = arr.indexOf("(");
             let fin = arr.lastIndexOf(")");
-
-            // достать из массива скобки с цифрами
-            // удалить скобки
             let insideHooks = arr.splice(start, fin - start + 1).slice(1, -1);
-            // передать без скобок в рекурсию
-            // counting(insideHooks);
-            // вставить посчитанное в массив ввместо старого
             arr.splice(start, 0, counting(insideHooks));
-
-            // обернуть в функцию if
         }
-
-
         while (arr.includes('/')) {
             let i = arr.indexOf('/');
             arr.splice(arr.indexOf('/') - 1, 3, +arr[i - 1] / +arr[i + 1]);
@@ -43,21 +33,6 @@ function calculate(params) {
     }
     return counting(arr);
 }
-let str = "2*((-3)+1)";
+let str = prompt('Введите выражение', "2*((-3+1)*1)-2");
 console.log(calculate(str));
-
-console.log(eval(str));//проверка eval-om
-// //////////
-// let str = '12(3456)7890';
-// console.log(arr);
-// var arr = str.split('');
-// console.log(arr);
-// let start = arr.indexOf("(");
-// let fin = arr.lastIndexOf(")");
-// let insideHooks = arr.splice(start, fin - start + 1).slice(1, -1)
-// console.log(insideHooks);
-// console.log(arr);
-// insideHooks = 'zzzz';
-// console.log(insideHooks);
-// arr.splice(start, 0, insideHooks);
-// console.log(arr);
+console.log(eval(str));
