@@ -30,6 +30,6 @@ function calculate(params) {
     }
     return counting(arr);
 }
-let str = prompt('Введите выражение', "2*(-3+1)*(1-2)");
+let str = prompt('Введите выражение', "2*(-3+1)*(1-2)-2*(-1+4)");
 console.log(eval(str) + ' = eval');
 console.log(calculate(str));
