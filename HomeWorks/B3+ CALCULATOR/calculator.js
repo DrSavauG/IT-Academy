@@ -7,9 +7,9 @@ function calculate(params) {
     let arr = params.replace(/\s/g, '').replace(/[-]/g, '•-').replace(/[+]/g, '•+').replace(/[*]/g, '•*•').replace(/[/]/g, '•/•').replace(/[(]/g, '•(•').replace(/[)]/g, '•)•').split('•').filter(nul => nul);
 
     function counting(arr) {
-        if (arr.includes("(")) {
+        while (arr.includes("(")) {
             let start = arr.indexOf("(");
-            let fin = arr.lastIndexOf(")");
+            let fin = arr.indexOf(")");
             let insideHooks = arr.splice(start, fin - start + 1).slice(1, -1);
             arr.splice(start, 0, counting(insideHooks));
         }
@@ -17,14 +17,11 @@ function calculate(params) {
             let i = arr.indexOf('/');
             arr.splice(arr.indexOf('/') - 1, 3, +arr[i - 1] / +arr[i + 1]);
         }
-
         while (arr.includes('*')) {
             let i = arr.indexOf('*');
             arr.splice(arr.indexOf('*') - 1, 3, +arr[i - 1] * +arr[i + 1]);
         }
-
         arr = arr.join('•+•').split('•');
-
         while (arr.includes('+')) {
             let i = arr.indexOf('+');
             arr.splice(arr.indexOf('+') - 1, 3, +arr[i - 1] + +arr[i + 1]);
@@ -33,6 +30,6 @@ function calculate(params) {
     }
     return counting(arr);
 }
-let str = prompt('Введите выражение', "2*((-3+1)*1)-2");
+let str = prompt('Введите выражение', "2*(-3+1)*(1-2)");
+console.log(eval(str) + ' = eval');
 console.log(calculate(str));
-console.log(eval(str));
