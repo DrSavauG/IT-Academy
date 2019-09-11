@@ -4,33 +4,60 @@
 // Например, вызываем функцию, передавая ей строку "2*(-3+1)", функция возвращает -4.
 'use string';
 function calculate(params) {
-    let sum = 0;
-    // if (params.indexOf("(")) {
-    //     let x = params.indexOf("(");
-    //     let y = params.lastIndexOf(")");
-    //     calculate(params.substring(x, y + 1).slice(1, -1));
-    // }
-    let enteredCut = params.replace(/\s/g, '').replace(/[-]/g, '•-').replace(/[+]/g, '•+').replace(/[*]/g, '•*•').replace(/[/]/g, '•/•').split('•').filter(nul => nul);
+    let arr = params.replace(/\s/g, '').replace(/[-]/g, '•-').replace(/[+]/g, '•+').replace(/[*]/g, '•*•').replace(/[/]/g, '•/•').replace(/[(]/g, '•(•').replace(/[)]/g, '•)•').split('•').filter(nul => nul);
 
-    while (enteredCut.includes('/')) {
-        let i = enteredCut.indexOf('/');
-        enteredCut.splice(enteredCut.indexOf('/') - 1, 3, +enteredCut[i - 1] / +enteredCut[i + 1]);
+    function counting(arr) {
+        if (arr.includes("(")) {
+            let start = arr.indexOf("(");
+            let fin = arr.lastIndexOf(")");
+
+            // достать из массива скобки с цифрами
+            // удалить скобки
+            let insideHooks = arr.splice(start, fin - start + 1).slice(1, -1);
+            // передать без скобок в рекурсию
+            // counting(insideHooks);
+            // вставить посчитанное в массив ввместо старого
+            arr.splice(start, 0, counting(insideHooks));
+
+            // обернуть в функцию if
+        }
+
+
+        while (arr.includes('/')) {
+            let i = arr.indexOf('/');
+            arr.splice(arr.indexOf('/') - 1, 3, +arr[i - 1] / +arr[i + 1]);
+        }
+
+        while (arr.includes('*')) {
+            let i = arr.indexOf('*');
+            arr.splice(arr.indexOf('*') - 1, 3, +arr[i - 1] * +arr[i + 1]);
+        }
+
+        arr = arr.join('•+•').split('•');
+
+        while (arr.includes('+')) {
+            let i = arr.indexOf('+');
+            arr.splice(arr.indexOf('+') - 1, 3, +arr[i - 1] + +arr[i + 1]);
+        }
+        return Number(arr.join());
     }
-
-    while (enteredCut.includes('*')) {
-        let i = enteredCut.indexOf('*');
-        enteredCut.splice(enteredCut.indexOf('*') - 1, 3, +enteredCut[i - 1] * +enteredCut[i + 1]);
-    }
-
-    enteredCut = enteredCut.join('•+•').split('•');
-
-    while (enteredCut.includes('+')) {
-        let i = enteredCut.indexOf('+');
-        enteredCut.splice(enteredCut.indexOf('+') - 1, 3, +enteredCut[i - 1] + +enteredCut[i + 1]);
-    }
-    return sum + Number(enteredCut.join());
+    return counting(arr);
 }
-let str = "2*(-3+1)";
+let str = "2*((-3)+1)";
 console.log(calculate(str));
 
 console.log(eval(str));//проверка eval-om
+// //////////
+// let str = '12(3456)7890';
+// console.log(arr);
+// var arr = str.split('');
+// console.log(arr);
+// let start = arr.indexOf("(");
+// let fin = arr.lastIndexOf(")");
+// let insideHooks = arr.splice(start, fin - start + 1).slice(1, -1)
+// console.log(insideHooks);
+// console.log(arr);
+// insideHooks = 'zzzz';
+// console.log(insideHooks);
+// arr.splice(start, 0, insideHooks);
+// console.log(arr);
