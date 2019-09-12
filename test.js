@@ -1,4 +1,4 @@
-let str = '1(23(4)5)6789';
+let str = '1(23(4)5)6(7)89';
 let arr = str.split('');
 let zzz = 0;;
 let zzz1 = 1;
@@ -20,4 +20,3 @@ if (a !== -1) {
 // }
 
 console.log(arr);
-console.log(a);
