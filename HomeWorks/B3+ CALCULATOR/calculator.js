@@ -11,9 +11,11 @@ function calculate(params) {
             let a = arr.indexOf("(");
             let a1 = arr.indexOf('(', a + 1);
             let b = arr.indexOf(")");
+            let b1 = arr.indexOf(")", b + 1);
             if (a1 !== -1 && b > a1) {
-                let insideHooks = arr.splice(a1, b - a1 + 1).slice(1, -1);
-                arr.splice(a1, 0, counting(insideHooks));
+                let insideHooks = arr.splice(a, b1 - a + 1).slice(1, -1);
+                arr.splice(a, 0, counting(insideHooks));
+                continue;
             }
             if (arr.includes("(")) {
                 a = arr.indexOf("(");
@@ -44,5 +46,6 @@ function calculate(params) {
     }
     return counting(arr);
 }
-let str = prompt('Введите выражение', "-7.1*(1.01)-(.5)-2*(-1)");
+let str = prompt('Введите выражение', "3+1/(-2-(9)-3*2)-2*(-(-9))");
+// let str = "3+1/(-2-(9)-3*2)-2*(-(-9))";
 console.log(`${calculate(str)}  ||  ${eval(str) == calculate(str)}`);
