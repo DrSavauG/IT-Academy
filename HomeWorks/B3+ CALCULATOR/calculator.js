@@ -9,14 +9,17 @@ function calculate(params) {
     function counting(arr) {
         while (arr.includes("(")) {
             let a = arr.indexOf("(");
-            let a1 = arr.indexOf('(', a);
+            let a1 = arr.indexOf('(', a+1);
             let b = arr.indexOf(")");
-            if (b < a1) {
-                let insideHooks = arr.splice(a, b - a + 1).slice(1, -1);
-                arr.splice(a, 0, counting(insideHooks));
-            } else {
+            let b1 = arr.indexOf(')', b + 1)
+            if (a1 !== -1 && b > a1) {
                 let insideHooks = arr.splice(a1, b - a1 + 1).slice(1, -1);
                 arr.splice(a1, 0, counting(insideHooks));
+            }
+            if (a !== -1) {
+
+                let insideHooks = arr.splice(a, b - a + 1).slice(1, -1);
+                arr.splice(a, 0, counting(insideHooks));
             }
         }
 
@@ -45,6 +48,6 @@ function calculate(params) {
 // let str = prompt('Введите выражение', "2*(-3+1)*(1-2)-2*(-1+4)");
 // console.log(eval(str) + ' = eval');
 
-let str = '-(7)';
+let str = '-(7)-(7-(-7))';
 console.log(`${calculate(str)}  ||  eval == ${eval(str)}`);
 // ////
