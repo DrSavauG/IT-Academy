@@ -5,8 +5,9 @@
 'use string';
 function calculate(params) {
     let arr = params.replace(/\s/g, '').replace(/[-]/g, '•-•').replace(/[+]/g, '•+•').replace(/[*]/g, '•*•').replace(/[/]/g, '•/•').replace(/[(]/g, '•(•').replace(/[)]/g, '•)•').split('•').filter(nul => nul);
+    // console.log(arr);
     function counting(arr) {
-        while (arr.includes("(")) {
+        while (arr.includes("(")&& arr.includes(")")) {
             let a = arr.indexOf("(");
             let a1 = arr.indexOf('(', a + 1);
             let a2 = arr.indexOf('(', a1 + 1);
@@ -52,6 +53,6 @@ function calculate(params) {
     }
     return counting(arr);
 }
-let str = prompt('Введите выражение', "3+1/(-2-(9)-3*2)-2*(-(-9))");
-// let str = "(((1)))+((1))";
+// let str = prompt('Введите выражение', "3+1/(-2-(9)-3*2)-2*(-(-9))");
+let str = "(((1)))+((1))-(-5)*(-2)";
 console.log(`${calculate(str)}  ||  ${eval(str) == calculate(str)}`);

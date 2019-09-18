@@ -23,7 +23,7 @@ function mood(colorsCount) {
             console.log(colorName);
             i++;
         }
-    }
+    }console.log(usedColors)
 }
 
-mood(7);
+mood(9);
