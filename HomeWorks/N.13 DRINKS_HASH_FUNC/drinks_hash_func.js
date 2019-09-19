@@ -65,12 +65,11 @@ deleteButton.onclick = () => {
             var delKey = _sticking();
             if (delKey === false) return false;
             var i = drinkStorage.getValue(delKey);
-            if (!i) console.error(`Напиток "${delKey}" отсутствует в списке!`);
         } while (!i);
         if (i) {
             drinkStorage.deleteValue(delKey);
             console.warn(`Напиток "${delKey}" удалён!`);
-            if (drinkStorage.getKeys() == false) console.warn(`Список напитков был полностью очищен!`);
+            if (drinkStorage.getKeys().length === 0) console.warn(`Список напитков был полностью очищен!`);
         } else {
             console.error(`Напитка "${delKey}"ещё нет в списке!`);
         }
