@@ -55,7 +55,7 @@ getButton.onclick = () => {
             var drinkName = _sticking();
             if (drinkName === false) return false;
             var i = drinkStorage.getValue(drinkName);
-            console.error(`Напиток "${drinkName}" ещё не  был внесен!`);
+            if (!i) console.error(`Напиток "${drinkName}" ещё не  был внесен!`);
         } while (!i);
         console.info(`Напиток: ${drinkName}\nАлкогольный: ${i.a ? 'Да' : 'Нет'}\nРецепт: ${i.r}`)
     }
@@ -73,6 +73,7 @@ deleteButton.onclick = () => {
         if (i) {
             drinkStorage.deleteValue(delKey);
             console.warn(`Напиток "${delKey}" удалён!`);
+            if (drinkStorage.getKeys() == false) console.warn(`Список напитков был полностью очищен!`);
         } else {
             console.error(`Напитка "${delKey}"ещё нет в списке!`);
         }
