@@ -55,8 +55,6 @@ function squareRootsTestsFast() {// версия укороченных тест
     const mistake = 1e-2;// степень погрешности
     let n = -1e7;
     let m = 1e7;
-    // let na = -1;
-    // let ma = 1;
     console.warn(`Tests start`);
     for (let i = 0; i < 1e6; i++) {
         let a = randomDiap(n, m);
