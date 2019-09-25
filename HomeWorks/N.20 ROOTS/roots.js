@@ -5,7 +5,7 @@ function squareRoots(a, b, c) {
             if (c == 0) {
                 return Infinity;// бесконечно корней
             } else return null;// нет корней
-        } return [-c / b];
+        } return [-c / b];// один корень
     }
 
     if (b == 0) {
@@ -14,7 +14,7 @@ function squareRoots(a, b, c) {
             return null;
         } else {
             x1 = Math.sqrt(-c / a);
-            x2 = -Math.sqrt(-c / a);
+            x2 = -x1;
             return [x1, x2];// два корня
         }
     }
@@ -46,26 +46,25 @@ function ttt() {
     if (roots.length == 2) return console.info('Два корня: ' + roots[0] + ' и ' + roots[1]);
     else console.error(` что тут творится?`)
 }
-function randomDiap() {
-    let n = -1e8;
-    let m = 1e8;
-    return ((Math.random() * (m - n + 1)) + n);// степень округления??
+function randomDiap(n, m) {
+    // return ((Math.random() * (m - n + 1)) + n);// степень округления??
+    return Math.floor(Math.random() * (m - n + 1)) + n
 }
 
-function squareRootsTests() {
-    const mistake = 1e-4;
-    for (let i = 0; i < 1e8; i++) {
-        let a = randomDiap();
-        let b = randomDiap();
-        let c = randomDiap();
+function squareRootsTestsFast() {// версия укороченных тестов, но быстрые
+    const mistake = 1e-2;// степень погрешности
+    let n = -1e7;
+    let m = 1e7;
+    // let na = -1;
+    // let ma = 1;
+    console.warn(`Tests start`);
+    for (let i = 0; i < 1e6; i++) {
+        let a = randomDiap(n, m);
+        let b = randomDiap(n, m);
+        let c = randomDiap(n, m);
         let roots = squareRoots(a, b, c);
-        if (roots !== Infinity && roots !== null && roots.length == 1) {
-            let x = roots[0];
-            let result = a * x * x + b * x + c;
-            if (Math.abs(0 - result) > mistake) {
-                console.error(`${i}: Fail with x = ${x}; a = ${a}; b = ${b}; c = ${c}; 0 = ${result}`);
-            }
-        } else if (roots !== Infinity && roots !== null && roots.length == 2) {
+        if (roots == Infinity) console.warn(`${i}: Infinity! `)
+        if (roots !== Infinity && roots !== null && roots.length == 2) {// нет смысла проверять, при с==0 ошибки не будет, один корень
             let x1 = roots[0];
             let x2 = roots[1];
             let result1 = a * x1 * x1 + b * x1 + c;
@@ -78,14 +77,18 @@ function squareRootsTests() {
             }
         }
     }
+    console.warn(`Test completed`);
 }
-/*// версия тестов которые показвают все сообщения
-function squareRootsTests() {
+
+function squareRootsTests() {// версия тестов которые показвают все сообщения.но очень медленно
     const mistake = 1e-6;
+    let n = -1e2;
+    let m = 1e2;
+    console.warn(`Tests start`);
     for (let i = 0; i < 1e4; i++) {
-        let a = randomDiap();
-        let b = randomDiap();
-        let c = randomDiap();
+        let a = randomDiap(n, m);
+        let b = randomDiap(n, m);
+        let c = randomDiap(n, m);
         let roots = squareRoots(a, b, c);
         if (roots === Infinity) console.warn(`Бесконечно корней!`);
         else if (roots === null) console.warn(`Корней нет`);
@@ -108,5 +111,5 @@ function squareRootsTests() {
             } else console.error(`${i}: Fail with x2 = ${x2}; a = ${a}; b = ${b}; c = ${c}; 0 = ${result2}`);
         }
     }
+    console.warn(`Test completed`);
 }
-*/
