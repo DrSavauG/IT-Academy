@@ -1,3 +1,12 @@
-console.log((function(num) {return num * num})(2));
-œ∑´®†¥¨ˆøπ“‘åß∂ƒ©˙∆˚¬…æ«≈ç√∫˜µ≤≥÷`Œ„´‰ˇÁ¨∏”’/* ÍÎ˝ÓÔÒÚÆ»`¸˛Ç◊ı˜Â¯˘¿
-¸˛Ç◊ı˜Â¯˘¿ÍÎ˝ÓÔÒ */
+function myClick() {
+    console.log('click');
+    console.log(event.target);
+}
+// {/* <div id="one">One</div>  */}
+let div = document.createElement('div');
+div.classList = 'button'
+div.innerHTML = 'ererere';
+document.body.append(div);
+
+document.querySelector('div').onclick = myClick;
+// document.querySelector('html').onclick = myClick;
